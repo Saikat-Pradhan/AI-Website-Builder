@@ -42,7 +42,7 @@ const Home = () => {
       >
         <div className='max-w-7xl mx-auto px-6 py-4 flex justify-between items-center'>
             <div className='text-lg font-semibold'>
-                GenWeb.ai
+                GenWeb<span className='text-zinc-400'>.ai</span>
             </div>
             <div className='flex items-center gap-5'>
                 <div onClick={()=>navigate("/pricing")} className='hidden md:inline text-sm px-3 py-1.5 rounded-full bg-gray-800 text-white hover:text-zinc-400 cursor-pointer'>
