@@ -1,16 +1,14 @@
 import { ArrowLeft, Check, Rocket, Share2 } from 'lucide-react'
 import React, { useEffect, useState } from 'react'
 import { motion } from 'motion/react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { serverUrl } from '../App.jsx'
 
 const Dashboard = () => {
   const { userData } = useSelector((state) => state.user)
-  const { websiteData } = useSelector((state) => state.websites)
   const navigate = useNavigate()
-  const dispatch = useDispatch()
 
   const [websites, setWebsites] = useState([])
   const [loading, setLoading] = useState(false)
@@ -23,7 +21,6 @@ const Dashboard = () => {
       try {
         const result = await axios.get(`${serverUrl}/api/website/get-all`, { withCredentials: true })
         setWebsites(result.data.websites)
-        dispatch(websiteData(result.data.websites))
       } catch (error) {
         console.error(error)
         setError(error.response?.data?.message || "Something went wrong")
@@ -101,9 +98,9 @@ const Dashboard = () => {
             </div>
           )}
 
-          {websiteData.length > 0 && !loading && !error && (
+          {websites.length > 0 && !loading && !error && (
             <div className='grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-8'>
-              {websiteData.map((w, i) => {
+              {websites.map((w, i) => {
                 const copied = (copiedId === w._id)
 
                 return <motion.div
