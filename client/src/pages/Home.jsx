@@ -45,15 +45,15 @@ const Home = () => {
                 GenWeb.ai
             </div>
             <div className='flex items-center gap-5'>
-                <div className='hidden md:inline text-sm text-zinc-400 hover:text-white cursor-pointer'>
-                    Pricing
+                <div onClick={()=>navigate("/pricing")} className='hidden md:inline text-sm px-3 py-1.5 rounded-full bg-gray-800 text-white hover:text-zinc-400 cursor-pointer'>
+                    {userData ? "Buy credits" : "Pricing"}
                 </div>
                 {userData && (
                   <div className='hidden md:flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-sm cursor-pointer hover:bg-white/10 transition'>
                     <Coins size={14} className='text-yellow-400'/>
                     <span className='text-zinc-300'>Credits</span>
                     <span >{userData.credits}</span>
-                    <span className='font-semibold'>+</span>
+                    <span onClick={()=>navigate("/pricing")} className='font-semibold'>+</span>
                   </div>
                 )}
 
@@ -81,13 +81,14 @@ const Home = () => {
                                 <p className='text-xs text-zinc-500 truncate'>{userData.email}</p>
                                </div>
 
-                               <button className='md:hidden w-full px-4 py-3 flex items-center gap-2 text-sm border-b border-white/10 hover:bg-white/5'>
+                               <button className='md:hidden w-full px-4 py-3 flex items-center gap-2 text-sm hover:bg-white/5'>
                                 <Coins size={14} className='text-yellow-400'/>
                                 <span className='text-zinc-300'>Credits</span>
                                 <span >{userData.credits}</span>
-                                <span className='font-semibold'>+</span>
+                                <span onClick={()=>navigate("/pricing")} className='font-semibold'>+</span>
                                </button>
 
+                               <button onClick={()=>navigate("/pricing")} className='w-full md:hidden px-4 py-3 text-left text-sm hover:bg-white/5 cursor-pointer'>Buy credits</button>
                                <button onClick={()=>navigate("/dashboard")} className='w-full px-4 py-3 text-left text-sm hover:bg-white/5 cursor-pointer'>Dashboard</button>
                                <button onClick={()=>handleLogOut()} className='w-full px-4 py-3 text-left text-sm text-red-400 hover:bg-white/5 cursor-pointer'>Logout</button>
                              </motion.div>

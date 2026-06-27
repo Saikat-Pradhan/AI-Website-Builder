@@ -4,6 +4,7 @@ import connectDB from "./config/mongodb.js";
 import authRouter from "./routes/auth.route.js";
 import userRouter from "./routes/user.route.js";
 import websiteRouter from "./routes/website.route.js";
+import paymentRouter from "./routes/payment.route.js";
 import cookieParser from "cookie-parser";
 import cors from "cors"
 
@@ -23,6 +24,7 @@ app.use(cors({
 app.use("/api/auth", authRouter);
 app.use("/api/user", userRouter);
 app.use("/api/website", websiteRouter);
+app.use("/api/payment", paymentRouter)
 
 // Error handling
 app.use((req, res) => {
