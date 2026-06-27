@@ -76,6 +76,7 @@ const Pricing = () => {
                     plan.id === "enterprise" ? 1499 : 0
 
             if(amount == 0){
+                setLoading(false);
                 navigate("/")
                 return
             }
