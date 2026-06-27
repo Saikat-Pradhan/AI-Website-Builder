@@ -28,6 +28,7 @@ const WebsiteEditor = () => {
     const [showCode, setShowCode] = useState(false)
     const [showFullPreview, setShowFullPreview] = useState(false)
     const [showChat, setShowChat] = useState(false)
+    const [deployed, setDeployed] = useState(false)
 
     useEffect(() => {
         const handleGetWebsite = async () => {
@@ -100,6 +101,8 @@ const WebsiteEditor = () => {
     const handleDeploy = async () => {
         try {
             const result = await axios.get(`${serverUrl}/api/website/deploy/${website._id}`, { withCredentials: true })
+            
+            setDeployed(true)
             window.open(`${result.data.url}`, "_blank")
         } catch (error) {
             console.log(error)
@@ -120,7 +123,7 @@ const WebsiteEditor = () => {
                         <h1 className="text-lg font-semibold">Live Preview</h1>
                     </div>
                     <div className='flex gap-2'>
-                        {!website.deployed && (<button onClick={handleDeploy} className='flex items-center gap-2 px-4 py-1.5 rounded-lg bg-gradient-to-r from-indigo-500 to-purple-500 text-sm font-semibold hover:scale-105 transition cursor-pointer'><Rocket size={14} /> Deploy</button>)}
+                        {(!website.deployed || deployed) && (<button onClick={handleDeploy} className='flex items-center gap-2 px-4 py-1.5 rounded-lg bg-gradient-to-r from-indigo-500 to-purple-500 text-sm font-semibold hover:scale-105 transition cursor-pointer'><Rocket size={14} /> Deploy</button>)}
                         <button onClick={() => setShowChat(true)} className='p-2 lg:hidden'><MessageSquare size={18} /></button>
                         <button onClick={() => setShowCode(!showCode)} className='p-2 cursor-pointer'><Code2 size={18} /></button>
                         <button onClick={() => setShowFullPreview(true)} className='p-2 cursor-pointer'><Monitor size={18} /></button>
