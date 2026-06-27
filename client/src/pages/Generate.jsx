@@ -91,7 +91,7 @@ const Generate = () => {
               <ArrowLeft size={16} />
             </button>
             <h1 className='text-lg font-semibold'>
-              GenWeb<span className='text-zinc-400'>.ai</span>
+              Dashboard
             </h1>
           </div>
         </div>

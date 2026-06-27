@@ -120,7 +120,7 @@ const WebsiteEditor = () => {
                         >
                             <ArrowLeft size={16} />
                         </button>
-                        <h1 className="text-lg font-semibold">Live Preview</h1>
+                        <h1 className="text-lg font-semibold">Dashboard</h1>
                     </div>
                     <div className='flex gap-2'>
                         {!website.deployed && !deployed && (<button onClick={handleDeploy} className='flex items-center gap-2 px-4 py-1.5 rounded-lg bg-gradient-to-r from-indigo-500 to-purple-500 text-sm font-semibold hover:scale-105 transition cursor-pointer'><Rocket size={14} /> Deploy</button>)}

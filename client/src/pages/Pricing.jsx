@@ -76,7 +76,7 @@ const Pricing = () => {
                     plan.id === "enterprise" ? 1499 : 0
 
             if(amount == 0){
-                setLoading(false);
+                setLoading(false)
                 navigate("/")
                 return
             }
@@ -122,11 +122,11 @@ const Pricing = () => {
                 <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-purple-600/20 rounded-full blur-[120px]" />
             </div>
 
-            <div className='z-10 max-w-7xl flex items-center gap-4'>
+            <div className='relative z-10 mb-8 flex items-center gap-4'>
                 <button onClick={() => navigate("/")} className='p-2 rounded-lg hover:bg-white/10 transition cursor-pointer'>
                     <ArrowLeft size={16} />
                 </button>
-                <h1 className='text-lg font-semibold'>Pricing</h1>
+                <h1 className='text-lg font-semibold'>Home</h1>
             </div>
 
             <motion.div
