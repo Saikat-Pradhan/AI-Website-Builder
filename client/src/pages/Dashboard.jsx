@@ -75,7 +75,7 @@ const Dashboard = () => {
             className='mb-10'
           >
             <p className='text-sm text-zinc-400 mb-1'>Welcome Back</p>
-            <h1 className='text-3xl font-bold'>{userData.name}</h1>
+            <h1 className='text-3xl font-bold'>{userData?.name}</h1>
           </motion.div>
 
           {loading && (
