@@ -77,6 +77,7 @@ const Pricing = () => {
 
             if(amount == 0){
                 navigate("/")
+                return
             }
 
             const result = await axios.post(serverUrl + "/api/payment/order", {
