@@ -33,18 +33,20 @@ const Dashboard = () => {
   }, [])
 
   const handleDeploy = async (id) => {
-    try {
-      const result = await axios.get(`${serverUrl}/api/website/deploy/${id}`, { withCredentials: true })
+  try {
+    const result = await axios.get(`${serverUrl}/api/website/deploy/${id}`, { withCredentials: true })
 
-      setWebsites((prev) =>
+    setWebsites((prev) =>
+      prev.map((w) =>
         w._id === id ? { ...w, deployed: true, deployUrl: result.data.url } : w
       )
-      
-      window.open(`${result.data.url}`, "_blank")
-    } catch (error) {
-      console.log(error)
-    }
+    )
+
+    window.open(result.data.url, "_blank")
+  } catch (error) {
+    console.log(error)
   }
+}
 
   const handleCopy = async (site) => {
     await navigator.clipboard.writeText(site.deployUrl)
