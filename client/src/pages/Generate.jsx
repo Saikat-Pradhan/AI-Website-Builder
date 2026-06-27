@@ -80,8 +80,8 @@ const Generate = () => {
 
   return (
     <div className='min-h-screen bg-gradient-to-br from-[#050505] via-[#0b0b0b] to-[#050505] text-white'>
+      {/* Header */}
       <div className='sticky top-0 z-40 backdrop-blur-xl bg-black/50 border-b border-white/10'>
-        {/* Header */}
         <div className='max-w-7xl mx-auto px-6 h-16 flex items-center justify-between'>
           <div className='flex items-center gap-4'>
             <button
@@ -91,7 +91,7 @@ const Generate = () => {
               <ArrowLeft size={16} />
             </button>
             <h1 className='text-lg font-semibold'>
-              GenWeb<span className='text-zinc-400'>.ai</span>
+              Dashboard
             </h1>
           </div>
         </div>
