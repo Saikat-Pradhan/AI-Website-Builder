@@ -94,7 +94,7 @@ const Dashboard = () => {
               <p className="text-zinc-400">You have no websites yet</p>
               <button
                 onClick={() => navigate("/generate")}
-                className="mt-4 px-4 py-2 rounded-lg bg-white text-black text-sm font-semibold hover:scale-105 transition"
+                className="mt-4 px-4 py-2 rounded-lg bg-white text-black text-sm font-semibold hover:scale-105 transition cursor-pointer"
               >
                 + Create Your First Website
               </button>

@@ -122,7 +122,7 @@ const Pricing = () => {
                 <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-purple-600/20 rounded-full blur-[120px]" />
             </div>
 
-            <div className='relative z-10 mb-8 flex items-center gap-4'>
+            <div className='relative z-10 gap-4 max-w-7xl mx-auto px-6 h-16 flex items-center justify-between'>
                 <button onClick={() => navigate("/")} className='p-2 rounded-lg hover:bg-white/10 transition cursor-pointer'>
                     <ArrowLeft size={16} />
                 </button>
