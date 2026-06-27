@@ -75,6 +75,10 @@ const Pricing = () => {
                 plan.id === "pro" ? 499 :
                     plan.id === "enterprise" ? 1499 : 0
 
+            if(amount == 0){
+                navigate("/")
+            }
+
             const result = await axios.post(serverUrl + "/api/payment/order", {
                 planId: plan.id,
                 amount,
