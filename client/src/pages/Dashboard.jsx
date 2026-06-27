@@ -35,11 +35,12 @@ const Dashboard = () => {
   const handleDeploy = async (id) => {
     try {
       const result = await axios.get(`${serverUrl}/api/website/deploy/${id}`, { withCredentials: true })
-      window.open(`${result.data.url}`, "_blank")
 
       setWebsites((prev) =>
         w._id === id ? { ...w, deployed: true, deployUrl: result.data.url } : w
       )
+      
+      window.open(`${result.data.url}`, "_blank")
     } catch (error) {
       console.log(error)
     }
