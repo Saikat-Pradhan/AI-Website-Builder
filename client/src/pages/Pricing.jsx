@@ -122,7 +122,7 @@ const Pricing = () => {
                 <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-purple-600/20 rounded-full blur-[120px]" />
             </div>
 
-            <div className='sticky top-0 z-40 backdrop-blur-xl bg-black/50 border-b border-white/10'>
+            <div className='sticky top-0 z-40 backdrop-blur-xl'>
                 <div className='max-w-7xl mx-auto px-6 h-16 flex items-center justify-between'>
                     <div className='flex items-center gap-4'>
                         <button
