@@ -153,7 +153,7 @@ const Home = () => {
       </section>
 
       {/* Footer */}
-      <footer>
+      <footer className='text-center'>
         &copy; {new Date().getFullYear()} GenWeb.ai
       </footer>
 

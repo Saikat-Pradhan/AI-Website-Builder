@@ -337,7 +337,7 @@ export const deployWebsite = async (req, res) => {
     }
 
     website.deployed = true
-    website.deployUrl = `${process.env.FRONTEND_URL}/site/${website.slug}`
+    website.deployUrl = `https://ai-website-builder-by-saikat-pradhan.onrender.com/site/${website.slug}`
 
     await website.save()
 
