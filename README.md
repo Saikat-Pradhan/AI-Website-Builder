@@ -34,6 +34,7 @@ GenWeb.ai is a MERN + AI powered platform that lets users build and deploy beaut
 - AI generates websites using HTML, CSS, JavaScript
 - Prompt‑based generation (just type your idea)
 - Update or modify existing sites with fewer credits
+- Full code view available for transparency
 - Deploy websites directly from the dashboard
 
 ### 💳 Pricing & Payments
