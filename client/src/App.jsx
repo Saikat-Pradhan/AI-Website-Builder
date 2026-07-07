@@ -1,4 +1,4 @@
-import React from 'react'
+import {useEffect} from 'react'
 import  {BrowserRouter, Route, Routes} from 'react-router-dom'
 import Home from './pages/Home'
 import Dashboard from './pages/Dashboard'
@@ -19,8 +19,9 @@ const App = () => {
   useEffect(() => {
     const getUser = async () => {
       try {
-        const result = await axios.get(`${serverUrl}/api/user/me`, {withCredentials: true});
-        dispatch(setUserData(result.data.user))
+        // const result = await axios.get(`${serverUrl}/api/user/me`, {withCredentials: true});
+        // dispatch(setUserData(result.data.user))
+        useGetCurrentUser()
       } catch (error) {
         console.error("Error fetching current user:", error);
         dispatch(setUserData(null));
