@@ -12,8 +12,22 @@ import { useSelector } from 'react-redux'
 export const serverUrl = import.meta.env.VITE_SERVER_URL
 
 const App = () => {
-  useGetCurrentUser()
+  const dispatch = useDispatch();
   const userData = useSelector(state=>state.user)
+
+  useEffect(() => {
+    const getUser = async () => {
+      try {
+        useGetCurrentUser();
+      } catch (error) {
+        console.error("Error fetching current user:", error);
+        dispatch(setUserData(null));
+      }
+    };
+
+    getUser();
+  }, [dispatch]);
+
   return (
     <BrowserRouter>
       <Routes>
