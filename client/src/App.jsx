@@ -7,6 +7,7 @@ import WebsiteEditor from './pages/Editor'
 import LiveSite from './pages/LiveSite'
 import Pricing from './pages/Pricing'
 import useGetCurrentUser from './hooks/useGetCurrentUser'
+import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux'
 
 export const serverUrl = import.meta.env.VITE_SERVER_URL
@@ -18,7 +19,8 @@ const App = () => {
   useEffect(() => {
     const getUser = async () => {
       try {
-        await useGetCurrentUser();
+        const result = await axios.get(`${serverUrl}/api/user/me`, {withCredentials: true});
+        dispatch(setUserData(result.data.user))
       } catch (error) {
         console.error("Error fetching current user:", error);
         dispatch(setUserData(null));
