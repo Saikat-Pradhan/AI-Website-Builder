@@ -18,7 +18,7 @@ const App = () => {
   useEffect(() => {
     const getUser = async () => {
       try {
-        useGetCurrentUser();
+        await useGetCurrentUser();
       } catch (error) {
         console.error("Error fetching current user:", error);
         dispatch(setUserData(null));
