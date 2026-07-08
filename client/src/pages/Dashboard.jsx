@@ -177,7 +177,7 @@ const Dashboard = () => {
                     )}
 
                     {displayDeleteButton && (
-                      <div className='mt-auto text-red-600 flex items-center justify-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold bg-white hover:scale-105 transition cursor-pointer' onClick={(e) => { e.stopPropagation(); setOpenDeleteId(w._id) }}>
+                      <div className='mt-auto text-red-600 flex items-center justify-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold bg-gray-100 hover:scale-105 transition cursor-pointer' onClick={(e) => { e.stopPropagation(); setOpenDeleteId(w._id) }}>
                         Delete Website{" "}
                         <MdDelete size={16} />
 
