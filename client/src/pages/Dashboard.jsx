@@ -1,4 +1,4 @@
-import { ArrowLeft, Check, Delete, Rocket, Share2 } from 'lucide-react'
+import { ArrowLeft, Check, DeleteIcon, Rocket, Share2 } from 'lucide-react'
 import React, { useEffect, useState } from 'react'
 import { motion } from 'motion/react'
 import { useSelector } from 'react-redux'
@@ -162,7 +162,7 @@ const Dashboard = () => {
                       </motion.button>
                     )}
 
-                    <button><Delete /></button>
+                    <button><DeleteIcon /></button>
                     </div>
                   </div>
                 </motion.div>
