@@ -363,3 +363,19 @@ export const getWebsiteBySlug = async (req, res) => {
     return res.status(500).json({message: `Get website by slug error: ${error}`})
   }
 }
+
+export const deleteWebsite = async (req, res) => {
+  try {
+    const website = await Website.findById(req.params.id);
+
+    if (!website) {
+      return res.status(404).json({ message: "Website not found" });
+    }
+
+    await Website.findByIdAndDelete(req.params.id);
+
+    return res.status(200).json({ message: "Website deleted successfully" });
+  } catch (error) {
+    return res.status(500).json({ message: `Failed to delete website: ${error}` });
+  }
+};

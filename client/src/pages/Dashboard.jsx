@@ -180,16 +180,16 @@ const Dashboard = () => {
                       <div onClick={(e) => e.stopPropagation()}>
                         <MdDelete
                           className='text-red-600 cursor-pointer'
-                          onClick={() => setOpenDeleteId(item._id)}
+                          onClick={() => setOpenDeleteId(w._id)}
                         />
 
-                        {openDeleteId === item._id && (
+                        {openDeleteId === w._id && (
                           <div onClick={(e) => e.stopPropagation} className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 cursor-default bg-white text-center shadow-lg rounded p-3 z-50'>
                             <p className='text-black font-serif text-[1.2rem]'>Are you sure?</p>
                             <div className='flex gap-2 mt-2 justify-center'>
                               <button
                                 className='bg-red-600 rounded px-3 py-1 text-white cursor-pointer'
-                                onClick={(e) => { e.stopPropagation(); deleteItem(item._id) }}
+                                onClick={(e) => { e.stopPropagation(); deleteItem(w._id) }}
                               >
                                 Delete
                               </button>
