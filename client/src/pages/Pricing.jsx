@@ -126,7 +126,7 @@ const Pricing = () => {
                 <div className='max-w-7xl mx-auto px-6 h-16 flex items-center justify-between'>
                     <div className='flex items-center gap-4'>
                         <button
-                            onClick={() => navigate("/dashboard")}
+                            onClick={() => navigate("/")}
                             className='p-2 rounded-lg hover:bg-white/10 transition cursor-pointer'
                         >
                             <ArrowLeft size={16} />
