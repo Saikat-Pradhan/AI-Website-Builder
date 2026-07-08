@@ -126,6 +126,7 @@ const Dashboard = () => {
                       {new Date(w.updatedAt).toLocaleDateString()}
                     </p>
 
+                    <div className='flex items-center gap-2'>
                     {!w.deployed ? (
                       <button
                         onClick={(e) => {
@@ -160,6 +161,9 @@ const Dashboard = () => {
                         }
                       </motion.button>
                     )}
+
+                    <button><FaDeleteLeft /></button>
+                    </div>
                   </div>
                 </motion.div>
               })}
