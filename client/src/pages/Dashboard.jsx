@@ -1,10 +1,11 @@
-import { ArrowLeft, Check, DeleteIcon, Rocket, Share2 } from 'lucide-react'
+import { ArrowLeft, Check, Rocket, Share2 } from 'lucide-react'
 import React, { useEffect, useState } from 'react'
 import { motion } from 'motion/react'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { serverUrl } from '../App.jsx'
+import { MdDelete } from "react-icons/md";
 
 const Dashboard = () => {
   const { userData } = useSelector((state) => state.user)
@@ -14,6 +15,8 @@ const Dashboard = () => {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("")
   const [copiedId, setCopiedId] = useState(null)
+  const [openDeleteId, setOpenDeleteId] = useState(null);
+
 
   useEffect(() => {
     const handleGetAllWebsites = async () => {
@@ -53,6 +56,18 @@ const Dashboard = () => {
     setCopiedId(site._id)
 
     setTimeout(() => setCopiedId(null), 2000)
+  }
+
+  const deleteItem = async (id) => {
+    try {
+      setOpenDeleteId(null)
+      await axios.post(serverURL + "/api/website/delete/" + id, {}, { withCredentials: true })
+
+      const result = await axios.get(serverURL + "/api/website/get-all", { withCredentials: true });
+      setWebsites(result.data.websites)
+    } catch (error) {
+      console.error(error)
+    }
   }
 
   return (
@@ -127,42 +142,67 @@ const Dashboard = () => {
                     </p>
 
                     <div className='flex items-center gap-2'>
-                    {!w.deployed ? (
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          handleDeploy(w._id)
-                        }}
-                        className='mt-auto flex items-center justify-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold bg-gradient-to-r from-indigo-500 to-purple-500 hover:scale-105 transition cursor-pointer'
-                      ><Rocket size={14} /> Deploy</button>
-                    ) : (
-                      <motion.button
-                        whileTap={{ scale: 0.95 }}
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          handleCopy(w)
-                        }}
-                        className={`mt-auto flex items-center justify-center gap-2 px-4 py-2 rounded-xl text-sm font-medium transition-all cursor-pointer 
+                      {!w.deployed ? (
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleDeploy(w._id)
+                          }}
+                          className='mt-auto flex items-center justify-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold bg-gradient-to-r from-indigo-500 to-purple-500 hover:scale-105 transition cursor-pointer'
+                        ><Rocket size={14} /> Deploy</button>
+                      ) : (
+                        <motion.button
+                          whileTap={{ scale: 0.95 }}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleCopy(w)
+                          }}
+                          className={`mt-auto flex items-center justify-center gap-2 px-4 py-2 rounded-xl text-sm font-medium transition-all cursor-pointer 
                                     ${copied ? "bg-emerald-500/20 text-emerald-400 border border-emerald-500/30"
-                            : "bg-white/10 hover:bg-white/20 border border-white/10"}
+                              : "bg-white/10 hover:bg-white/20 border border-white/10"}
                                   `}
-                      >
-                        {copied ?
-                          (
-                            <>
-                              <Check size={14} />
-                              Link Copied
-                            </>
-                          ) : (
-                            <>
-                              < Share2 size={14} />
-                              Share Link
-                            </>)
-                        }
-                      </motion.button>
-                    )}
+                        >
+                          {copied ?
+                            (
+                              <>
+                                <Check size={14} />
+                                Link Copied
+                              </>
+                            ) : (
+                              <>
+                                < Share2 size={14} />
+                                Share Link
+                              </>)
+                          }
+                        </motion.button>
+                      )}
 
-                    <button><DeleteIcon /></button>
+                      <div onClick={(e) => e.stopPropagation()}>
+                        <MdDelete
+                          className='text-red-600 cursor-pointer'
+                          onClick={() => setOpenDeleteId(item._id)}
+                        />
+
+                        {openDeleteId === item._id && (
+                          <div onClick={(e) => e.stopPropagation} className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 cursor-default bg-white text-center shadow-lg rounded p-3 z-50'>
+                            <p className='text-black font-serif text-[1.2rem]'>Are you sure?</p>
+                            <div className='flex gap-2 mt-2 justify-center'>
+                              <button
+                                className='bg-red-600 rounded px-3 py-1 text-white cursor-pointer'
+                                onClick={(e) => { e.stopPropagation(); deleteItem(item._id) }}
+                              >
+                                Delete
+                              </button>
+                              <button
+                                className='bg-black rounded px-3 py-1 text-white cursor-pointer'
+                                onClick={(e) => { e.stopPropagation(); setOpenDeleteId(null) }}
+                              >
+                                Cancel
+                              </button>
+                            </div>
+                          </div>
+                        )}
+                      </div>
                     </div>
                   </div>
                 </motion.div>
