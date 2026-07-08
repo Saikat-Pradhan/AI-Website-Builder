@@ -15,6 +15,7 @@ export const serverUrl = import.meta.env.VITE_SERVER_URL;
 const App = () => {
   const dispatch = useDispatch();
   const userData = useSelector(state => state.user); 
+  dispatch(setUserData(null));
 
   useEffect(() => {
     const getUser = async () => {
