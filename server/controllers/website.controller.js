@@ -259,7 +259,7 @@ export const changeWebsite = async (req, res) => {
         UPDATE THIS HTML WEBSITE.
 
         CURRENT CODE:
-        ${Website.latestCode}
+        ${website.latestCode}
 
         USER REQUEST:
         ${prompt}
@@ -267,7 +267,7 @@ export const changeWebsite = async (req, res) => {
         RETURN RAW JSON ONLY:
         {
           "message": "Short confirmation",
-          "code": "<UPDATED FULL HTML">
+          "code": "<UPDATED FULL HTML>"
         }
       `
     
