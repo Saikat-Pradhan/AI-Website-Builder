@@ -210,7 +210,9 @@ const Dashboard = () => {
                     )}
 
                     {displayDeleteButton && (
-                      <p className='text-xs hover:text-underline hover:text-blue-400 text-blue-500 mt-2 cursor-pointer' onClick={(e) => { e.stopPropagation(); setDisplayDeleteButton(false) }}>Less options</p>
+                      <div className='flex justify-center mt-2'>
+                        <p className='w-fit text-xs underline hover:text-blue-400 text-blue-500 cursor-pointer' onClick={(e) => { e.stopPropagation(); setDisplayDeleteButton(false) }}>Less options</p>
+                      </div>
                     )}
                   </div>
                 </motion.div>
