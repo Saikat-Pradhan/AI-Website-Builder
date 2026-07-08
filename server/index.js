@@ -16,7 +16,7 @@ app.use(express.json());
 app.use(cookieParser())
 app.use(express.urlencoded({ extended: true }));
 app.use(cors({
-    origin: "http://localhost:5173", //"https://ai-website-builder-by-saikat-pradhan.onrender.com",
+    origin: "https://ai-website-builder-by-saikat-pradhan.onrender.com",
     credentials:true
 }))
 

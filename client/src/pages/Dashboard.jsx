@@ -16,7 +16,7 @@ const Dashboard = () => {
   const [error, setError] = useState("")
   const [copiedId, setCopiedId] = useState(null)
   const [openDeleteId, setOpenDeleteId] = useState(null);
-
+  const [displayDeleteButton, setDisplayDeleteButton] = useState(false);
 
   useEffect(() => {
     const handleGetAllWebsites = async () => {
@@ -61,9 +61,9 @@ const Dashboard = () => {
   const deleteItem = async (id) => {
     try {
       setOpenDeleteId(null)
-      await axios.post(serverURL + "/api/website/delete/" + id, {}, { withCredentials: true })
+      await axios.post(serverUrl + "/api/website/delete/" + id, {}, { withCredentials: true })
 
-      const result = await axios.get(serverURL + "/api/website/get-all", { withCredentials: true });
+      const result = await axios.get(serverUrl + "/api/website/get-all", { withCredentials: true });
       setWebsites(result.data.websites)
     } catch (error) {
       console.error(error)
@@ -141,47 +141,45 @@ const Dashboard = () => {
                       {new Date(w.updatedAt).toLocaleDateString()}
                     </p>
 
-                    <div className='flex items-center gap-2'>
-                      {!w.deployed ? (
-                        <button
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            handleDeploy(w._id)
-                          }}
-                          className='mt-auto flex items-center justify-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold bg-gradient-to-r from-indigo-500 to-purple-500 hover:scale-105 transition cursor-pointer'
-                        ><Rocket size={14} /> Deploy</button>
-                      ) : (
-                        <motion.button
-                          whileTap={{ scale: 0.95 }}
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            handleCopy(w)
-                          }}
-                          className={`mt-auto flex items-center justify-center gap-2 px-4 py-2 rounded-xl text-sm font-medium transition-all cursor-pointer 
+                    {!w.deployed ? (
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleDeploy(w._id)
+                        }}
+                        className='mt-auto flex items-center justify-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold bg-gradient-to-r from-indigo-500 to-purple-500 hover:scale-105 transition cursor-pointer'
+                      ><Rocket size={14} /> Deploy</button>
+                    ) : (
+                      <motion.button
+                        whileTap={{ scale: 0.95 }}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleCopy(w)
+                        }}
+                        className={`mt-auto flex items-center justify-center gap-2 px-4 py-2 rounded-xl text-sm font-medium transition-all cursor-pointer 
                                     ${copied ? "bg-emerald-500/20 text-emerald-400 border border-emerald-500/30"
-                              : "bg-white/10 hover:bg-white/20 border border-white/10"}
+                            : "bg-white/10 hover:bg-white/20 border border-white/10"}
                                   `}
-                        >
-                          {copied ?
-                            (
-                              <>
-                                <Check size={14} />
-                                Link Copied
-                              </>
-                            ) : (
-                              <>
-                                < Share2 size={14} />
-                                Share Link
-                              </>)
-                          }
-                        </motion.button>
-                      )}
+                      >
+                        {copied ?
+                          (
+                            <>
+                              <Check size={14} />
+                              Link Copied
+                            </>
+                          ) : (
+                            <>
+                              < Share2 size={14} />
+                              Share Link
+                            </>)
+                        }
+                      </motion.button>
+                    )}
 
-                      <div onClick={(e) => e.stopPropagation()}>
-                        <MdDelete
-                          className='text-red-600 cursor-pointer'
-                          onClick={() => setOpenDeleteId(w._id)}
-                        />
+                    {displayDeleteButton && (
+                      <div className='mt-auto text-red-600 flex items-center justify-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold bg-white hover:scale-105 transition cursor-pointer' onClick={(e) => { e.stopPropagation(); setOpenDeleteId(w._id) }}>
+                        Delete Website{" "}
+                        <MdDelete size={16} />
 
                         {openDeleteId === w._id && (
                           <div onClick={(e) => e.stopPropagation} className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 cursor-default bg-white text-center shadow-lg rounded p-3 z-50'>
@@ -203,7 +201,15 @@ const Dashboard = () => {
                           </div>
                         )}
                       </div>
-                    </div>
+                    )}
+
+                    {!displayDeleteButton && (
+                      <button className='text-xs text-blue-500 mt-2 cursor-pointer' onClick={(e) => { e.stopPropagation(); setDisplayDeleteButton(true) }}>More options</button>
+                    )}
+
+                    {displayDeleteButton && (
+                      <button className='text-xs text-blue-500 mt-2 cursor-pointer' onClick={(e) => { e.stopPropagation(); setDisplayDeleteButton(false) }}>Less options</button>
+                    )}
                   </div>
                 </motion.div>
               })}
