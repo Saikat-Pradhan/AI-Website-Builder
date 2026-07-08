@@ -204,11 +204,13 @@ const Dashboard = () => {
                     )}
 
                     {!displayDeleteButton && (
-                      <button className='text-xs text-underline hover:text-blue-400 text-blue-500 mt-2 cursor-pointer' onClick={(e) => { e.stopPropagation(); setDisplayDeleteButton(true) }}>More options</button>
+                      <div>
+                      <p className='text-xs hover:text-underline hover:text-blue-400 text-blue-500 mt-2 cursor-pointer' onClick={(e) => { e.stopPropagation(); setDisplayDeleteButton(true) }}>More options</p>
+                      </div>
                     )}
 
                     {displayDeleteButton && (
-                      <button className='text-xs text-underline hover:text-blue-400 text-blue-500 mt-2 cursor-pointer' onClick={(e) => { e.stopPropagation(); setDisplayDeleteButton(false) }}>Less options</button>
+                      <p className='text-xs hover:text-underline hover:text-blue-400 text-blue-500 mt-2 cursor-pointer' onClick={(e) => { e.stopPropagation(); setDisplayDeleteButton(false) }}>Less options</p>
                     )}
                   </div>
                 </motion.div>
