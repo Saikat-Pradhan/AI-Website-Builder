@@ -17,6 +17,7 @@ const Dashboard = () => {
   const [copiedId, setCopiedId] = useState(null)
   const [openDeleteId, setOpenDeleteId] = useState(null);
   const [displayDeleteButton, setDisplayDeleteButton] = useState(false);
+  const [openOptionsId, setOpenOptionsId] = useState(null);
 
   useEffect(() => {
     const handleGetAllWebsites = async () => {
@@ -176,13 +177,14 @@ const Dashboard = () => {
                       </motion.button>
                     )}
 
-                    {displayDeleteButton && (
-                      <div className='mt-auto text-red-600 flex items-center justify-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold bg-gray-200 hover:scale-105 transition cursor-pointer' onClick={(e) => { e.stopPropagation(); setOpenDeleteId(w._id) }}>
+                    {openOptionsId === w._id && (
+                      <div className='mt-auto text-red-600 flex items-center justify-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold bg-gray-200 hover:scale-105 transition cursor-pointer'
+                        onClick={(e) => { e.stopPropagation(); setOpenDeleteId(w._id) }}>
                         Delete Website{" "}
                         <MdDelete size={16} />
 
                         {openDeleteId === w._id && (
-                          <div onClick={(e) => e.stopPropagation} className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 cursor-default bg-white text-center shadow-lg rounded p-3 z-50'>
+                          <div className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 cursor-default bg-white text-center shadow-lg rounded p-3 z-50'>
                             <p className='text-black font-serif text-[1.2rem]'>Are you sure?</p>
                             <div className='flex gap-2 mt-2 justify-center'>
                               <button
@@ -203,15 +205,19 @@ const Dashboard = () => {
                       </div>
                     )}
 
-                    {!displayDeleteButton && (
+                    {openOptionsId !== w._id ? (
                       <div className='flex justify-center mt-2'>
-                        <p className='w-fit text-xs underline hover:text-blue-400 text-blue-500 cursor-pointer' onClick={(e) => { e.stopPropagation(); setDisplayDeleteButton(true) }}>More options</p>
+                        <p className='w-fit text-xs underline hover:text-blue-400 text-blue-500 cursor-pointer'
+                          onClick={(e) => { e.stopPropagation(); setOpenOptionsId(w._id) }}>
+                          More options
+                        </p>
                       </div>
-                    )}
-
-                    {displayDeleteButton && (
+                    ) : (
                       <div className='flex justify-center mt-2'>
-                        <p className='w-fit text-xs underline hover:text-blue-400 text-blue-500 cursor-pointer' onClick={(e) => { e.stopPropagation(); setDisplayDeleteButton(false) }}>Less options</p>
+                        <p className='w-fit text-xs underline hover:text-blue-400 text-blue-500 cursor-pointer'
+                          onClick={(e) => { e.stopPropagation(); setOpenOptionsId(null) }}>
+                          Less options
+                        </p>
                       </div>
                     )}
                   </div>
