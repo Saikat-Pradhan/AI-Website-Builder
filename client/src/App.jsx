@@ -17,10 +17,6 @@ const App = () => {
   const userData = useSelector(state => state.user); 
 
   useEffect(() => {
-    dispatch(setUserData(null));
-  }, [dispatch]);
-
-  useEffect(() => {
     const getUser = async () => {
       try {
         const result = await axios.get(`${serverUrl}/api/user/me`, { withCredentials: true });
