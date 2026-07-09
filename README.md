@@ -1,5 +1,7 @@
 # 🌐 GenWeb.ai — AI Website Builder
 
+<img src="https://github.com/Saikat-Pradhan/AI-Website-Builder/blob/main/client/public/FontImage.png" />
+
 ![React](https://img.shields.io/badge/Frontend-React-blue?logo=react)
 ![Node.js](https://img.shields.io/badge/Backend-Node.js-green?logo=node.js)
 ![Express](https://img.shields.io/badge/Framework-Express-black?logo=express)
